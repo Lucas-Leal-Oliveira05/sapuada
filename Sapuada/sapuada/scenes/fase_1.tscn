@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://biin7vjkawkv8"]
+
+[ext_resource type="PackedScene" uid="uid://b4gbywbosltb" path="res://scenes/sapo.tscn" id="1_8dnef"]
+[ext_resource type="Script" uid="uid://dhbj6r15yhtfe" path="res://scripts/fase_1.gd" id="1_u5pyp"]
+[ext_resource type="PackedScene" uid="uid://buyc5rktwafcy" path="res://scenes/bolas.tscn" id="2_ugoy3"]
+
+[sub_resource type="Curve2D" id="Curve2D_8dnef"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -138, 145, 0, 0, 0, 0, -40, 112, -25.7231, 2.14359, 25.7231, -2.14359, 85, 93, 0, 0, 0, 0, 222, 82, 38.5846, 2.14359, -38.5846, -2.14359, 387, 91, 0, 0, 0, 0, 605, 91, -75.0257, -17.1487, 75.0257, 17.1487, 933, 110, -66.4513, -10.718, 66.4513, 10.718, 1158, 108, 0, 0, 0, 0, 1343, 136, 0, 0, 0, 0, 1660, 179, 0, 0, 0, 0, 1879, 228, 0, 0, 0, 0, 1967, 436, 0, 0, 0, 0, 2072, 638, 0, 0, 0, 0, 2076, 846, 0, 0, 0, 0, 2027, 1006, 0, 0, 0, 0, 1840, 1094, 0, 0, 0, 0, 1564, 1150, 0, 0, 0, 0, 1227, 1193, 0, 0, 0, 0, 830, 1165, 0, 0, 0, 0, 481, 1105, 0, 0, 0, 0, 335, 968, 0, 0, 0, 0, 352, 786, 0, 0, 0, 0, 464, 635, 0, 0, 0, 0, 685, 623, 0, 0, 0, 0, 880, 627, 0, 0, 0, 0, 989, 642)
+}
+point_count = 26
+
+[node name="Fase 1" type="Node2D"]
+script = ExtResource("1_u5pyp")
+bolas_scene = ExtResource("2_ugoy3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(0.5, 0.5)
+limit_right = 1000000000
+
+[node name="Sapo" parent="." instance=ExtResource("1_8dnef")]
+position = Vector2(1148, 647)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-12, -2)
+curve = SubResource("Curve2D_8dnef")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-138, 145)
+rotation = -0.324809
+
+[node name="bolas" parent="Path2D/PathFollow2D" instance=ExtResource("2_ugoy3")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
