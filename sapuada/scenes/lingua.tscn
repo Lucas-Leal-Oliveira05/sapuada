@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dccic3rijahwa"]
+
+[ext_resource type="Script" uid="uid://q0ccqcat5dgs" path="res://scripts/lingua.gd" id="1_cx8ui"]
+[ext_resource type="Texture2D" uid="uid://cgvpbu856be72" path="res://assets/Sapo.svg" id="1_u4idt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cx8ui"]
+radius = 36.0555
+
+[node name="lingua" type="Area2D" groups=["lingua"]]
+top_level = true
+script = ExtResource("1_cx8ui")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.113725, 0.254902, 1, 1)
+position = Vector2(-1, -2.38419e-07)
+scale = Vector2(0.27204, 0.226625)
+texture = ExtResource("1_u4idt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 9)
+shape = SubResource("CircleShape2D_cx8ui")
