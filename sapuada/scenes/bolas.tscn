@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://buyc5rktwafcy"]
+
+[ext_resource type="Script" uid="uid://r34l2q2iy6nt" path="res://scripts/bolas.gd" id="1_c2227"]
+[ext_resource type="Texture2D" uid="uid://bk8ur5pdl6f2v" path="res://assets/bolas.svg" id="2_7rxq1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ecr2"]
+radius = 33.0606
+
+[node name="bolas" type="Area2D"]
+script = ExtResource("1_c2227")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(168, 72)
+scale = Vector2(2.87028, 2.752)
+texture = ExtResource("2_7rxq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -3)
+shape = SubResource("CircleShape2D_6ecr2")
+
+[node name="numero" type="Label" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.948007, 0.902399, 1.54018e-06, 1)
+self_modulate = Color(0.679402, 0.679402, 0, 1)
+offset_left = -23.0
+offset_top = -30.0
+offset_right = 25.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
