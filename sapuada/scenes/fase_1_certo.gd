@@ -23,12 +23,13 @@ func _on_Timer_timeout():
 
 func spawn_ball():
 	var valor = randi_range(1, 10)
-	var velocidade = randf_range(60, 100)
+	var velocidade = 100
 	
 	# Criar um PathFollow2D só pra essa bola
 	var follow = PathFollow2D.new()
+	follow.rotates = false
 	path.add_child(follow)
-	follow.progress = randf_range(0, path.curve.get_baked_length() * 0.3)
+	follow.progress = 0
 	
 	# Instanciar a bola
 	var ball = ball_scene.instantiate()
@@ -36,17 +37,15 @@ func spawn_ball():
 	# Configura a bola usando o método setup
 	ball.setup(follow, valor, velocidade)
 	
-	# Conecta o sinal de destruição COM a referência da bola
+	# Conecta o sinal de destruição COM a nova assinatura
 	ball.ball_destroyed.connect(_on_bola_destroyed)
 	
 	follow.add_child(ball)
 	bolas.append(ball)
 	
 	print("🎱 Bola spawnada:", valor, "| Total bolas:", bolas.size())
-	
-	print("🎱 Bola spawnada:", valor, "| Total bolas:", bolas.size())
 
-func _process(_delta):
+func _process(delta):
 	# Remove bolas inválidas da lista
 	for i in range(bolas.size() - 1, -1, -1):
 		if not is_instance_valid(bolas[i]):
@@ -139,21 +138,11 @@ func _on_bola_destroyed(value:int, ball_node: MathBall):
 	# Remove a bola específica que foi destruída
 	for i in range(bolas.size() - 1, -1, -1):
 		if bolas[i] == ball_node:
-			# Destrói a bola e seu path_follow
-			if is_instance_valid(ball_node.path_follow):
-				ball_node.path_follow.queue_free()
 			bolas.remove_at(i)
+			print("✅ Bola específica removida!")
 			break
 	
-	print("✅ Bola removida! Bolas restantes:", bolas.size())
-	
-	if value == resultado_atual:
-		print("🎉 Acertou! Valor:", value)
-		gerar_equacao_baseada_em_bolas()
-	else:
-		print("❌ Errou! Valor:", value, "| Esperado:", resultado_atual)
-	
-	print("✅ Bola removida! Bolas restantes:", bolas.size())
+	print("Bolas restantes:", bolas.size())
 	
 	if value == resultado_atual:
 		print("🎉 Acertou! Valor:", value)
