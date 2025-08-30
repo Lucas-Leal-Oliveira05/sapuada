@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://biin7vjkawkv8"]
+[gd_scene load_steps=6 format=3 uid="uid://biin7vjkawkv8"]
 
 [ext_resource type="PackedScene" uid="uid://b4gbywbosltb" path="res://scenes/sapo.tscn" id="1_8dnef"]
 [ext_resource type="Script" uid="uid://dhbj6r15yhtfe" path="res://scripts/fase_1.gd" id="1_u5pyp"]
 [ext_resource type="PackedScene" uid="uid://buyc5rktwafcy" path="res://scenes/bolas.tscn" id="2_ugoy3"]
+[ext_resource type="PackedScene" uid="uid://c3s1xitives0i" path="res://scenes/pause_menu.tscn" id="4_u7fro"]
 
 [sub_resource type="Curve2D" id="Curve2D_8dnef"]
 _data = {
@@ -39,3 +40,6 @@ rotation = -0.324809
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="pause_menu" parent="." instance=ExtResource("4_u7fro")]
+visible = false

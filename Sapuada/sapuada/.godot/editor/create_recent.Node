@@ -1,2 +1,11 @@
+ColorRect
 Button
 VBoxContainer
+CanvasLayer
+AnimationPlayer
+AnimationTree
+PanelContainer
+TextureButton
+GridContainer
+Label
+MarginContainer

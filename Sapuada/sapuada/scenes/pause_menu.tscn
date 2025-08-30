@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3s1xitives0i"]
+
+[ext_resource type="Script" uid="uid://ce75pt6br386w" path="res://scripts/pause_menu.gd" id="1_myx47"]
+[ext_resource type="Theme" uid="uid://bioe35ttt2ys0" path="res://Tema/pause_menu.tres" id="1_n87rw"]
+
+[node name="pause_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_myx47")
+
+[node name="bg_over" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.254902)
+
+[node name="menu_holder" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -44.5
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pause_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("1_n87rw")
+text = "RESUME
+"
+
+[node name="quit_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("1_n87rw")
+text = "QUIT GAME
+
+"
+
+[connection signal="pressed" from="menu_holder/pause_btn" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="menu_holder/quit_btn" to="." method="_on_quit_btn_pressed"]
