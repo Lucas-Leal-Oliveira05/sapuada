@@ -8,7 +8,7 @@ extends Node2D
 var bolas = []  # Lista das bolas (nós MathBall)
 var game_over = false
 var resultado_atual:int = 0
-var spawn_delay = 2.0
+var spawn_delay = 2.5
 
 func _ready():
 	randomize()
@@ -23,7 +23,7 @@ func _on_Timer_timeout():
 
 func spawn_ball():
 	var valor = randi_range(1, 10)
-	var velocidade = 100
+	var velocidade = 350
 	
 	# Criar um PathFollow2D só pra essa bola
 	var follow = PathFollow2D.new()
@@ -133,19 +133,10 @@ func valor_existe_em_bolas(valor: int) -> bool:
 	return false
 
 func _on_bola_destroyed(value:int, ball_node: MathBall):
-	print("💥 Sinal recebido - Bola destruída:", value)
-	
-	# Remove a bola específica que foi destruída
-	for i in range(bolas.size() - 1, -1, -1):
-		if bolas[i] == ball_node:
-			bolas.remove_at(i)
-			print("✅ Bola específica removida!")
-			break
-	
-	print("Bolas restantes:", bolas.size())
-	
 	if value == resultado_atual:
 		print("🎉 Acertou! Valor:", value)
+		# Agora sim: só destrói a bola SE acertou
+		ball_node.destroy()
 		gerar_equacao_baseada_em_bolas()
 	else:
 		print("❌ Errou! Valor:", value, "| Esperado:", resultado_atual)
