@@ -1,18 +1,25 @@
 extends Area2D
 
-var distancia = 0
+@export var velocidade := 1000
+var direcao := Vector2.ZERO
 
-func _physics_process(delta):
-	const velocidade = 1000
-	const range = 1500
-	#movimento do projetil
-	var direction = Vector2.RIGHT.rotated(rotation)
-	position += direction * velocidade * delta
+func _ready():
+	# faz a língua andar para frente na direção inicial
+	direcao = Vector2.RIGHT.rotated(rotation)
+
+func _process(delta):
+	position += direcao * velocidade * delta
 	
-	distancia += velocidade * delta
-	
-	#faz projetil sumir (substuir por fazer a lingua voltar)
-	if distancia > range:
+	if position.length() > 2000:
 		queue_free()
-	
-	
+
+func _on_area_entered(area: Area2D):
+	if area is MathBall:
+		# só dispara o sinal se for bola
+		area.verificar_acerto()  # método no MathBall que decide se some ou não
+		# depois de encostar em qualquer bola → some
+		queue_free()
+
+func _on_body_entered(body: Node):
+	# caso colida com algo sólido, também some
+	queue_free()
